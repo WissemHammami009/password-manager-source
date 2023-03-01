@@ -1,0 +1,20 @@
+.jumbotron {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index:99;
+    position:relative;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.navbar-brand {
+    background: linear-gradient(
+      to right, 
+      hsl(98 100% 62%), 
+      hsl(204 100% 59%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }

@@ -1,0 +1,39 @@
+@import '../../hometemplate/assets/vendor/bootstrap/css/bootstrap.min.css';
+@import '../../hometemplate/assets/vendor/bootstrap-icons/bootstrap-icons.css';
+@import '../../hometemplate/assets/vendor/boxicons/css/boxicons.min.css';
+@import '../../hometemplate/assets/vendor/glightbox/css/glightbox.min.css';
+@import '../../hometemplate/assets/vendor/remixicon/remixicon.css';
+@import '../../hometemplate/assets/vendor/swiper/swiper-bundle.min.css';
+@import '../../hometemplate/assets/css/style.css';
+
+
+#dropdownMenuButton {
+    color: aliceblue;
+    border-color: aliceblue;
+    background-color: transparent;
+}
+.dropdown-menu {
+    background-color: transparent;
+}
+.dropdown-item {
+    color: aliceblue;
+}
+H1 {
+    background: linear-gradient(
+      to right, 
+      hsl(98 100% 62%), 
+      hsl(204 100% 59%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .link_developer {
+    background: linear-gradient(
+      to right, 
+      hsl(98 100% 62%), 
+      hsl(204 100% 59%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

@@ -1,0 +1,174 @@
+<head>
+    <script src="https://kit.fontawesome.com/321c1d5dc4.js" crossorigin="anonymous"></script>
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" >Password Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/dashboard">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn btn-secondary" (click)="logout()"> <i class="fas fa-sign-out"></i> Logout</button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="show_ipinfo()" >IP: {{this.ipAddress}}</a>
+        </li>
+        
+       
+        <!-- <li class="nav-item">
+          <a class="nav-link">Number of ENtry</a>
+        </li> -->
+       
+      </ul>
+      <span class="navbar-text">
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Add New Entry</button>
+      </span>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <ng-container *ngIf="isShow">
+      <div style="text-align: center;"><div class="alert alert-info" role="alert">
+        <strong>Info: </strong>You didn't have any entry!
+      </div></div>
+    </ng-container>
+
+  <ng-container  *ngIf="!isShow">
+    <div class="table-responsive">
+      <table class="table table-hover" >
+        <caption>Number of Entry <span class="badge badge-primary">{{li.length}}</span></caption>
+        <thead>
+          <tr >
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Link</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of li">
+            <th scope="row">{{e.id}}</th>
+            <td>{{e.name}}</td>
+            <td>{{e.link}}</td>
+            <td>{{e.email}}</td>
+            <td><i (click)="alert(e.password)" class="fas fa-eye">  ********** </i></td>
+            <td><i (click)="delete(e.id)" class="fa fa-trash" aria-hidden="true"></i></td>
+            <td><i (click)="modal(e.name,e.link,e.email,e.password,e.id)" class="fa fa-pencil-square" aria-hidden="true" data-toggle="modal" data-target="#modifyentry"></i></td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add New Entry</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="reset_mod_add()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Name" (input)="link_update()" [formControl]="name">
+                </div>
+                <div class="form-group">
+                  <label for="link">Link</label>
+                  <input type="text" class="form-control" id="link"  placeholder="Link" [formControl]="link">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email"  placeholder="Email" [formControl]="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password"  placeholder="password" [formControl]="password">
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reset_mod_add()">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="create_item()" >Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="modifyentry" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modify This Entry</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Name" (input)="link1_update()" [formControl]="name1">
+                </div>
+                <div class="form-group">
+                  <label for="link">Link</label>
+                  <input type="text" class="form-control" id="link"  placeholder="Link" [formControl]="link1">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email"  placeholder="Email" [formControl]="email1">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password"  placeholder="password" [formControl]="password1">
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="update()" >Modify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+<div class="footer ">
+  
+    <div class="jumbotron " [ngStyle]="{'display':show }">
+      <button type="button" class="close" aria-label="Close" (click)="change_visi()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h1 class="display-4">Hello, {{info.name}}!</h1>
+      <p class="lead">Your Ip Adress: {{this.ipAddress}}</p>
+      <hr class="my-4">
+      <p>For discover the beta version, you can follow this link.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="javascript:void(0)" role="button">Learn more</a>
+      </p>
+    </div>
+</div>
+</footer>
+
+  
+
+ 
+
+  
+

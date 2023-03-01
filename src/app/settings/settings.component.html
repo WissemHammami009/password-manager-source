@@ -1,0 +1,65 @@
+<head>
+    <script src="https://kit.fontawesome.com/321c1d5dc4.js" crossorigin="anonymous"></script>
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" >Password Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/settings">Settings</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-secondary" (click)="logout()"> <i class="fas fa-sign-out"></i> Logout</button>
+      </li>
+     
+      <!-- <li class="nav-item">
+        <a class="nav-link">Number of ENtry</a>
+      </li> -->
+     
+    </ul>
+    <span class="navbar-text">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Add New Entry</button>
+    </span>
+  </div>
+</nav>
+
+
+
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{li.name +" "+ li.surname}}</span><span class="text-black-50">{{li.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name"  required [formControl]="name"></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control"  placeholder="surname" required [formControl]="surname"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Email</label><input autocomplete="disabled" type="text"   class="form-control" placeholder="Email"  [formControl]="email" ></div>
+                  </div>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="update()">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Password</span></div><br>
+                <div class="col-md-12"><label class="labels">Old Password</label><input type="password" class="form-control" placeholder="Old Password" [className]="pass + 'form-control'"  [formControl]="password"></div> <br>
+                <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" placeholder="New Password"  [formControl]="password1"></div>
+                <div class="col-md-12"><label class="labels">Verify Password</label><input type="password" class="form-control" placeholder="Verify Password" [formControl]="password2"></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="update_pass()" >Update Password</button></div>
+              </div>
+        </div>
+    </div>
+</div>
