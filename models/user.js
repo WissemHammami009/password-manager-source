@@ -1,4 +1,5 @@
 
+const database = require('../database/connectdb')
 const mongo = require('mongoose')
 
 const User = mongo.Schema({

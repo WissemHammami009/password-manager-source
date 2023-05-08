@@ -12,8 +12,8 @@ var transporter = nodemailer.createTransport({
     service: 'gmail',
     host:"smtp.gmail.com",
     auth: {
-      user: 'hammamiwissem21@gmail.com',
-      pass: 'fqmpninnfvwxysiu'
+      user: '',
+      pass: ''
     }
   });
 
@@ -41,24 +41,4 @@ app.listen('3000',()=>{
 })
 app.get('/get',(req,res)=>{
     res.send("ok")
-})
-// let data = "mongodb+srv://mrpan009:dQ9YaLRF0MmejL5y@cluster0.wutxk.mongodb.net/passwordmanager?retryWrites=true&w=majority"
-// mongodb.connect(data,(err)=>
-// {
-//     if (err) {
-//         return console.log(err.message);
-//     }
-//     else {
-//         console.log("Database connected")
-//     }
-// })
-
-const url = 'mongodb://127.0.0.1:27017/passwordmanager'
-mongodb.connect(url, { useNewUrlParser: true })
-const db = mongodb.connection
-db.once('open', _ => {
-  console.log('Database connected')
-})
-db.on('error', err => {
-  console.error('connection error:', err)
 })
